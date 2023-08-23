@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
+import 'SignupIconFile.dart';
 
 class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
+      routes: {
+    '/Second': (context) => ImagePickerWidget(), 
+  },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
@@ -203,10 +207,15 @@ class PasswordCheckInput extends StatelessWidget {
   
 }
 
+
 class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/Second'); // ページ遷移の処理を追加
+      },
+    child: Column(
       children: [
         Container(
           width: 203,
@@ -260,6 +269,7 @@ class NextButton extends StatelessWidget {
           ),
         ),
       ],
+    ),
     );
   }
 }
