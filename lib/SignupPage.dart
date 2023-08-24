@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'SignupIconFile.dart';
+import 'ProfileExample.dart';
 
 class SignupPage extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class SignupPage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       routes: {
-    '/Second': (context) => ImagePickerWidget(), 
+    '/second': (context) => ProfileExample(), 
   },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
@@ -62,53 +63,6 @@ class SignupPage extends StatelessWidget {
         )
         ),
       ),
-    );
-  }
-}
-
-enum Enter { login, signup }
-
-class SingleChoice extends StatefulWidget {
-  const SingleChoice({Key? key}) : super(key: key); // Added 'Key?' parameter
-
-  @override
-  State<SingleChoice> createState() => _SingleChoiceState();
-}
-
-class _SingleChoiceState extends State<SingleChoice> {
-  Enter enterView = Enter.login;
-
-  @override
-  Widget build(BuildContext context) {
-    return SegmentedButton<Enter>(
-      segments: const <ButtonSegment<Enter>>[
-        ButtonSegment<Enter>(
-          value: Enter.login,
-          label: Text('ログイン'),
-        ),
-        ButtonSegment<Enter>(
-          value: Enter.signup,
-          label: Text('新規登録'),
-        ),
-      ],
-      selected: <Enter>{enterView},
-      onSelectionChanged: (Set<Enter> newSelection) {
-        setState(() {
-          enterView = newSelection.first;
-        });
-
-         if (enterView == Enter.login) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => LoginPage()),
-          );
-        } else if (enterView == Enter.signup) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SignupPage()), 
-          );
-        }
-      },
     );
   }
 }
@@ -213,7 +167,7 @@ class NextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/Second'); // ページ遷移の処理を追加
+        Navigator.pushNamed(context, '/second');
       },
     child: Column(
       children: [
