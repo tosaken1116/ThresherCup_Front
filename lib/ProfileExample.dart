@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
+import 'SignupIconFile.dart';
 
 class ProfileExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
+      routes: {
+    '/third': (context) => ImagePickerWidget(), 
+  },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
