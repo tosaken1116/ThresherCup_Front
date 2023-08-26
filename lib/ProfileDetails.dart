@@ -5,6 +5,7 @@ import 'LoginPage.dart';
 import 'ProfileExample.dart';
 import 'dart:math';
 import 'package:flutter/services.dart';
+import 'profile.dart';
 
 
 class ProfileDetails extends StatelessWidget {
@@ -13,6 +14,9 @@ class ProfileDetails extends StatelessWidget {
    Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
+      routes: {
+    '/fourth': (context) => Profile(), 
+  },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
@@ -150,6 +154,9 @@ class InputFinishButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/fourth');
+      },
     child: Column(
       children: [
         Container(

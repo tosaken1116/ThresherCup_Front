@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
-import 'ProfileDetails.dart';
-import 'Profile.dart';
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
-      routes: {
-    '/third': (context) => ProfileDetails(), 
-  },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
@@ -21,11 +16,10 @@ class Profile extends StatelessWidget {
     children: [
       ClosePass(),
       SingleChoice(),
-      TabGroup(),
       SuggestText(),
       ProfileCard(),
       SizedBox(height: 20), 
-      ToIconButton(),
+      EnterButton(),
       Spacer(),
     ],
   ),
@@ -35,46 +29,6 @@ class Profile extends StatelessWidget {
 }
 }
 
-
-class TabGroup extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children:[
-         Container(
-              width: 200,
-              height: 40,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    width: 10,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFF00FFEF),
-                        ),
-                  ),
-                  Container(width: 10,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.grey,
-                        ),),
-                  Container(
-                    width: 10,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.grey,
-                        )
-                  ),
-                ],
-              ),
-            ),
-
-      ]
-    );
-  }
-  
-}
 class SuggestText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -123,19 +77,19 @@ class ProfileCard extends StatelessWidget {
                 Text('所属       : ',style: TextStyle(
                     fontSize: 20,
                   ),),
-                Text('↑↑所属を記入します（例：九州工業大学）',style: TextStyle(
+                Text('',style: TextStyle(
                     fontSize: 10,
                   ),),
                 Text('活動圏     : ',style: TextStyle(
                     fontSize: 20,
                   ),),
-                Text('↑↑普段活動している場所を記入します（例:mastodon(C3サーバ)）',style: TextStyle(
+                Text('',style: TextStyle(
                     fontSize: 10,
                   ),),
                 Text('メッセージ  : ',style: TextStyle(
                     fontSize: 20,
                   ),),
-                Text('↑↑１００字以内でメッセージを記入します(例:わーーーい)',style: TextStyle(
+                Text('',style: TextStyle(
                     fontSize: 10,
                   ),),
                   SizedBox(height: 20), 
@@ -150,13 +104,10 @@ class ProfileCard extends StatelessWidget {
 
 
 
-class ToIconButton extends StatelessWidget {
+class EnterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/third');
-      },
     child: Column(
       children: [
         Container(
