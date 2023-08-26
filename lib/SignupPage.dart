@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
-import 'SignupIconFile.dart';
 import 'ProfileExample.dart';
 
 class SignupPage extends StatelessWidget {

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'ProfileDetails.dart';
+import 'Profile.dart';
 
-class ProfileExample extends StatelessWidget {
+class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

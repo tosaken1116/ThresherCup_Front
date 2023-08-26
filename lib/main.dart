@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'SignupPage.dart';
-import 'SignupIconFile.dart';
 import 'ProfileExample.dart';
+import 'ProfileDetails.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => LoginPage(),
         '/first': (context) => SignupPage(),
         '/second': (context) => ProfileExample(),
-        '/third': (context) => ImagePickerWidget(),
+        '/third': (context) => ProfileDetails(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

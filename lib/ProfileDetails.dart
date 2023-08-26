@@ -1,16 +1,18 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
-import 'ProfileDetails.dart';
+import 'ProfileExample.dart';
+import 'dart:math';
+import 'package:flutter/services.dart';
 
-class ProfileExample extends StatelessWidget {
+
+class ProfileDetails extends StatelessWidget {
+
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
-      routes: {
-    '/third': (context) => ProfileDetails(), 
-  },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
@@ -19,23 +21,21 @@ class ProfileExample extends StatelessWidget {
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       ClosePass(),
-      SingleChoice(),
-      TabGroup(),
-      SuggestText(),
-      ProfileCard(),
-      SizedBox(height: 20), 
-      ToIconButton(),
+      TabGroup3(),
+      BelongInput(),
+      ActiveSpaceInput(),
+      MessageInput(),
+      InputFinishButton(),
       Spacer(),
-    ],
-  ),
+    ]
+            ),
         ),
       ),
-          );
-}
+    );
+   }
 }
 
-
-class TabGroup extends StatelessWidget {
+class TabGroup3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -50,7 +50,7 @@ class TabGroup extends StatelessWidget {
                     width: 10,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color(0xFF00FFEF),
+                          color: Colors.grey,
                         ),
                   ),
                   Container(width: 10,
@@ -62,7 +62,7 @@ class TabGroup extends StatelessWidget {
                     width: 10,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Colors.grey,
+                          color: Color(0xFF00FFEF),
                         )
                   ),
                 ],
@@ -74,88 +74,82 @@ class TabGroup extends StatelessWidget {
   }
   
 }
-class SuggestText extends StatelessWidget {
+
+class BelongInput extends StatelessWidget {
+  const BelongInput({Key? key}) : super(key: key); 
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          width: 220,
-          height: 40,
-          child: Text(
-            'プロフィールカードを作成します',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w400,
-              height: 2,
+          width: 250,
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: '所属',
             ),
           ),
         ),
+        SizedBox(height: 16),
       ],
     );
   }
 }
 
-class ProfileCard extends StatelessWidget {
+class ActiveSpaceInput extends StatelessWidget {
+  const ActiveSpaceInput({Key? key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        margin: EdgeInsets.only(
-                right: 20,
-                left: 20, 
-              ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const ListTile(
-              leading: Icon(Icons.account_circle,size: 50.0,color: Colors.blue,),
-              title: Text('ユーザーネーム'),
+    return Column(
+      children: [
+        SizedBox(
+          width: 250,
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: '活動圏',
             ),
-            SizedBox(height: 10), 
-           Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text('所属       : ',style: TextStyle(
-                    fontSize: 20,
-                  ),),
-                Text('↑↑所属を記入します（例：九州工業大学）',style: TextStyle(
-                    fontSize: 10,
-                  ),),
-                Text('活動圏     : ',style: TextStyle(
-                    fontSize: 20,
-                  ),),
-                Text('↑↑普段活動している場所を記入します（例:mastodon(C3サーバ)）',style: TextStyle(
-                    fontSize: 10,
-                  ),),
-                Text('メッセージ  : ',style: TextStyle(
-                    fontSize: 20,
-                  ),),
-                Text('↑↑１００字以内でメッセージを記入します(例:わーーーい)',style: TextStyle(
-                    fontSize: 10,
-                  ),),
-                  SizedBox(height: 20), 
-              ],
-            ),
-          ],
+          ),
         ),
-      ),
+        SizedBox(height: 16),
+      ],
+    );
+  }
+}
+
+class MessageInput extends StatelessWidget {
+  const MessageInput({Key? key}) : super(key: key); 
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          width: 250,
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Message',
+            ),
+          ),
+        ),
+        SizedBox(height: 16),
+      ],
     );
   }
 }
 
 
 
-class ToIconButton extends StatelessWidget {
+class InputFinishButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/third');
-      },
     child: Column(
       children: [
         Container(
