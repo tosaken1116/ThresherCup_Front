@@ -99,7 +99,7 @@ class _UserAllPageState extends State<UserAllPage> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
+          selectedItemColor: Color.fromARGB(255, 3, 0, 26),
           onTap: _onItemTapped,
           type: BottomNavigationBarType.shifting,
           // ここで色を設定していても、shiftingにしているので
