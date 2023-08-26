@@ -1,10 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:pass_by_connect/MyAccount.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
 import 'UserAllPage.dart';
 
-class MyAccount extends StatelessWidget {
+void main() => runApp(const MyAccount());
+
+class MyAccount extends StatefulWidget {
+  const MyAccount({Key? key}) : super(key: key);
+
+  @override
+  State<MyAccount> createState() => _MyAccountState();
+}
+
+class _MyAccountState extends State<MyAccount> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: School',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Settings',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,7 +70,9 @@ class MyAccount extends StatelessWidget {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
-              activeIcon: Icon(Icons.account_circle),
+              activeIcon: Icon(
+                Icons.account_circle,
+              ),
               label: 'Users',
               tooltip: "This is Users",
               backgroundColor: Color.fromARGB(255, 231, 183, 255),
@@ -59,10 +99,10 @@ class MyAccount extends StatelessWidget {
               backgroundColor: Colors.pink,
             ),
           ],
-
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
           type: BottomNavigationBarType.shifting,
-          // ここで色を設定していても、shiftingにしているので
-          // Itemの方のbackgroundColorが勝ちます。
           backgroundColor: Colors.red,
           enableFeedback: true,
           // IconTheme系統の値が優先されます。
@@ -70,7 +110,7 @@ class MyAccount extends StatelessWidget {
           selectedFontSize: 20,
           selectedIconTheme: const IconThemeData(
               size: 30, color: Color.fromARGB(255, 52, 52, 52)),
-          selectedItemColor: Colors.black,
+
           unselectedFontSize: 15,
           unselectedIconTheme: const IconThemeData(
               size: 25, color: Color.fromARGB(255, 70, 70, 70)),
@@ -80,7 +120,7 @@ class MyAccount extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               PageChoice(),
-              FavoriteText(),
+              SuggestText(),
             ],
           ),
         ),
@@ -89,7 +129,55 @@ class MyAccount extends StatelessWidget {
   }
 }
 
-class FavoriteText extends StatelessWidget {
+enum Page { mypage, otheruser }
+
+class PageChoice extends StatefulWidget {
+  const PageChoice({Key? key}) : super(key: key);
+
+  @override
+  State<PageChoice> createState() => _PageChoiceState();
+}
+
+class _PageChoiceState extends State<PageChoice> {
+  Page pageView = Page.mypage;
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<Page>(
+      segments: const <ButtonSegment<Page>>[
+        ButtonSegment<Page>(
+          value: Page.mypage,
+          label: Text('マイアカウント'),
+        ),
+        ButtonSegment<Page>(
+          value: Page.otheruser,
+          label: Text('他のユーザー'),
+        ),
+      ],
+      selected: <Page>{pageView},
+      onSelectionChanged: (Set<Page> newSelection) {
+        setState(() {
+          pageView = newSelection.first;
+        });
+
+        if (pageView == Page.mypage) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return MyAccount();
+            }),
+          );
+        } else if (pageView == Page.otheruser) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return MyAccount();
+          }));
+        }
+      },
+    );
+  }
+}
+
+class SuggestText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -98,7 +186,7 @@ class FavoriteText extends StatelessWidget {
           width: 220,
           height: 40,
           child: Text(
-            '自分のことをフォローしたユーザー',
+            '自分をお気に入り登録したユーザー',
             style: TextStyle(
               color: Colors.black,
               fontSize: 14,

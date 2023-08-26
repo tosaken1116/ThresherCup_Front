@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'Favorit.dart';
 import 'LoginPage.dart';
+import 'MyTimeLine.dart';
 import 'SignupPage.dart';
 import 'ProfileExample.dart';
 import 'ProfileDetails.dart';
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
         '/fifth': (context) => UserAllPage(),
         '/sixth': (context) => DMPage(),
         '/seventh': (context) => MyAccount(),
+        '/eighth': (context) => MyTimeLine(),
+        '/ninth': (context) => Favorit(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

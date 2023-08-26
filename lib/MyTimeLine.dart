@@ -1,47 +1,11 @@
 import 'package:flutter/material.dart';
+import 'MyAccount.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
-import 'MyAccount.dart';
+import 'UserAllPage.dart';
 
-void main() => runApp(const UserAllPage());
-
-class UserAllPage extends StatefulWidget {
-  const UserAllPage({Key? key}) : super(key: key);
-
-  @override
-  State<UserAllPage> createState() => _UserAllPageState();
-}
-
-class _UserAllPageState extends State<UserAllPage> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
+class MyTimeLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -69,9 +33,7 @@ class _UserAllPageState extends State<UserAllPage> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
-              activeIcon: Icon(
-                Icons.account_circle,
-              ),
+              activeIcon: Icon(Icons.account_circle),
               label: 'Users',
               tooltip: "This is Users",
               backgroundColor: Color.fromARGB(255, 231, 183, 255),
@@ -98,9 +60,7 @@ class _UserAllPageState extends State<UserAllPage> {
               backgroundColor: Colors.pink,
             ),
           ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
-          onTap: _onItemTapped,
+
           type: BottomNavigationBarType.shifting,
           // ここで色を設定していても、shiftingにしているので
           // Itemの方のbackgroundColorが勝ちます。
@@ -111,7 +71,7 @@ class _UserAllPageState extends State<UserAllPage> {
           selectedFontSize: 20,
           selectedIconTheme: const IconThemeData(
               size: 30, color: Color.fromARGB(255, 52, 52, 52)),
-
+          selectedItemColor: Colors.black,
           unselectedFontSize: 15,
           unselectedIconTheme: const IconThemeData(
               size: 25, color: Color.fromARGB(255, 70, 70, 70)),
@@ -120,8 +80,7 @@ class _UserAllPageState extends State<UserAllPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              PageChoice(),
-              SuggestText(),
+              FavoritUserText(),
             ],
           ),
         ),
@@ -130,45 +89,45 @@ class _UserAllPageState extends State<UserAllPage> {
   }
 }
 
-enum Page { mypage, otheruser }
+enum TimeLine { mypost, otherpost }
 
-class PageChoice extends StatefulWidget {
-  const PageChoice({Key? key}) : super(key: key);
+class TimeLineChoice extends StatefulWidget {
+  const TimeLineChoice({Key? key}) : super(key: key);
 
   @override
-  State<PageChoice> createState() => _PageChoiceState();
+  _TimeLineChoiceState createState() => _TimeLineChoiceState();
 }
 
-class _PageChoiceState extends State<PageChoice> {
-  Page pageView = Page.mypage;
+class _TimeLineChoiceState extends State<TimeLineChoice> {
+  TimeLine timelineView = TimeLine.mypost;
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton<Page>(
-      segments: const <ButtonSegment<Page>>[
-        ButtonSegment<Page>(
-          value: Page.mypage,
-          label: Text('マイアカウント'),
+    return SegmentedButton<TimeLine>(
+      segments: const <ButtonSegment<TimeLine>>[
+        ButtonSegment<TimeLine>(
+          value: TimeLine.mypost,
+          label: Text('自分の投稿'),
         ),
-        ButtonSegment<Page>(
-          value: Page.otheruser,
-          label: Text('他のユーザー'),
+        ButtonSegment<TimeLine>(
+          value: TimeLine.otherpost,
+          label: Text('タイムライン'),
         ),
       ],
-      selected: <Page>{pageView},
-      onSelectionChanged: (Set<Page> newSelection) {
+      selected: <TimeLine>{timelineView},
+      onSelectionChanged: (Set<TimeLine> newSelection) {
         setState(() {
-          pageView = newSelection.first;
+          timelineView = newSelection.first;
         });
 
-        if (pageView == Page.mypage) {
+        if (timelineView == TimeLine.mypost) {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) {
               return MyAccount();
             }),
           );
-        } else if (pageView == Page.otheruser) {
+        } else if (timelineView == TimeLine.otherpost) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return UserAllPage();
           }));
@@ -178,7 +137,7 @@ class _PageChoiceState extends State<PageChoice> {
   }
 }
 
-class SuggestText extends StatelessWidget {
+class FavoritUserText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -187,7 +146,7 @@ class SuggestText extends StatelessWidget {
           width: 220,
           height: 40,
           child: Text(
-            '２４時間以内にすれ違ったユーザー',
+            'お気に入りのユーザー',
             style: TextStyle(
               color: Colors.black,
               fontSize: 14,
@@ -198,50 +157,6 @@ class SuggestText extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class ScrollUsers extends StatefulWidget {
-  const ScrollUsers({Key? key}) : super(key: key);
-
-  @override
-  State<ScrollUsers> createState() => _ScrollUsersState();
-}
-
-class _ScrollUsersState extends State<ScrollUsers> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            backgroundImage:
-                NetworkImage('https://cat-fact.herokuapp.com/facts'),
-          ),
-          SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text('Sea10'),
-                  SizedBox(width: 8),
-                  Text('2022/05/05'),
-                ],
-              ),
-              SizedBox(height: 4),
-              Text('aaaaa'),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.favorite_border),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }
