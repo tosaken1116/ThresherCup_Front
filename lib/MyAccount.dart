@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pass_by_connect/MyAccount.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
+import 'UserAllPage.dart';
 
-class UserAllPage extends StatelessWidget {
+class MyAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,9 +32,7 @@ class UserAllPage extends StatelessWidget {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),
-              activeIcon: Icon(
-                Icons.account_circle,
-              ),
+              activeIcon: Icon(Icons.account_circle),
               label: 'Users',
               tooltip: "This is Users",
               backgroundColor: Color.fromARGB(255, 231, 183, 255),
@@ -82,7 +80,7 @@ class UserAllPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               PageChoice(),
-              SuggestText(),
+              FavoriteText(),
             ],
           ),
         ),
@@ -91,55 +89,7 @@ class UserAllPage extends StatelessWidget {
   }
 }
 
-enum Page { mypage, otheruser }
-
-class PageChoice extends StatefulWidget {
-  const PageChoice({Key? key}) : super(key: key);
-
-  @override
-  State<PageChoice> createState() => _PageChoiceState();
-}
-
-class _PageChoiceState extends State<PageChoice> {
-  Page pageView = Page.mypage;
-
-  @override
-  Widget build(BuildContext context) {
-    return SegmentedButton<Page>(
-      segments: const <ButtonSegment<Page>>[
-        ButtonSegment<Page>(
-          value: Page.mypage,
-          label: Text('マイアカウント'),
-        ),
-        ButtonSegment<Page>(
-          value: Page.otheruser,
-          label: Text('他のユーザー'),
-        ),
-      ],
-      selected: <Page>{pageView},
-      onSelectionChanged: (Set<Page> newSelection) {
-        setState(() {
-          pageView = newSelection.first;
-        });
-
-        if (pageView == Page.mypage) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return MyAccount();
-            }),
-          );
-        } else if (pageView == Page.otheruser) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return UserAllPage();
-          }));
-        }
-      },
-    );
-  }
-}
-
-class SuggestText extends StatelessWidget {
+class FavoriteText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -148,7 +98,7 @@ class SuggestText extends StatelessWidget {
           width: 220,
           height: 40,
           child: Text(
-            '２４時間以内にすれ違ったユーザー',
+            '自分のことをフォローしたユーザー',
             style: TextStyle(
               color: Colors.black,
               fontSize: 14,
