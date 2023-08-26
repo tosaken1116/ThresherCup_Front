@@ -9,54 +9,23 @@ class LoginPage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
-          child: Column(
-            children: [
-              RichText(
-                text: TextSpan(
-                  style: TextStyle(fontSize: 32),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'C',
-                      style: TextStyle(
-                        color: Color(0xFF00FFF0),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'lose',
-                      style: TextStyle(
-                        color: Color(0xff000000),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'P',
-                      style: TextStyle(
-                        color: Color(0xFFE395FF),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'ass',
-                      style: TextStyle(
-                        color: Color(0xff000000),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SingleChoice(),
-              SizedBox(height: 20),
-              UserNameInput(),
-              PasswordInput(),
-              Button(),
-              Spacer(),
-            ],
-          ),
+          
+            child: Column( 
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      ClosePass(),
+      SingleChoice(),
+      SizedBox(height: 20),
+      UserNameInput(),
+      PasswordInput(),
+      Button(),
+      Spacer(),
+    ],
+  ),
         ),
-      ),
-    );
+        
+          ),
+        );
   }
 }
 
@@ -115,9 +84,57 @@ class _SingleChoiceState extends State<SingleChoice> {
   }
 }
 
+class ClosePass extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+            children: [
+              RichText(
+                text: TextSpan(
+                  style: TextStyle(fontSize: 32),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'C',
+                      style: TextStyle(
+                        color: Color(0xFF00FFF0),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'lose',
+                      style: TextStyle(
+                        color: Color(0xff000000),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'P',
+                      style: TextStyle(
+                        color: Color(0xFFE395FF),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'ass',
+                      style: TextStyle(
+                        color: Color(0xff000000),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+      );
+
+  }
+}
+
+
 
 class UserNameInput extends StatelessWidget {
-  const UserNameInput({Key? key}) : super(key: key); // Added 'Key?' parameter
+  const UserNameInput({Key? key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +157,7 @@ class UserNameInput extends StatelessWidget {
 }
 
 class PasswordInput extends StatelessWidget {
-  const PasswordInput({Key? key}) : super(key: key); // Added 'Key?' parameter
+  const PasswordInput({Key? key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
@@ -199,8 +216,6 @@ class Button extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // The 'NextButton' widget seems to be missing or not defined in this code snippet.
-                      // If it's a custom widget, you need to import and use it here.
                       Text(
                         'Next',
                         textAlign: TextAlign.center,

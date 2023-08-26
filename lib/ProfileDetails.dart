@@ -1,73 +1,86 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'ProfileExample.dart';
+import 'dart:math';
+import 'package:flutter/services.dart';
+import 'profile.dart';
 
-class SignupPage extends StatelessWidget {
+
+class ProfileDetails extends StatelessWidget {
+
   @override
-  Widget build(BuildContext context) {
+   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       routes: {
-    '/second': (context) => ProfileExample(), 
+    '/fourth': (context) => Profile(), 
   },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
-        child: Column(
-          children: [
-            RichText(
-              text: TextSpan(
-                style: TextStyle(fontSize: 32),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'C',
-                    style: TextStyle(
-                      color: Color(0xFF00FFF0),
-                      fontWeight: FontWeight.bold,
-                    ),
+          
+            child: Column( 
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      ClosePass(),
+      TabGroup3(),
+      BelongInput(),
+      ActiveSpaceInput(),
+      MessageInput(),
+      InputFinishButton(),
+      Spacer(),
+    ]
+            ),
+        ),
+      ),
+    );
+   }
+}
+
+class TabGroup3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children:[
+         Container(
+              width: 200,
+              height: 40,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Container(
+                    width: 10,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey,
+                        ),
                   ),
-                  TextSpan(
-                    text: 'lose',
-                    style: TextStyle(
-                      color: Color(0xff000000),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'P',
-                    style: TextStyle(
-                      color: Color(0xFFE395FF),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'ass',
-                    style: TextStyle(
-                      color: Color(0xff000000),
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Container(width: 10,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey,
+                        ),),
+                  Container(
+                    width: 10,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFF00FFEF),
+                        )
                   ),
                 ],
               ),
             ),
-            SingleChoice(),
-            SizedBox(height: 20),
-            UserNameInput(),
-            MailAdressInput(),
-            PasswordInput(),
-            PasswordCheckInput(),
-            NextButton(),
-            Spacer(),
-          ],
-        )
-        ),
-      ),
+
+      ]
     );
   }
+  
 }
 
-class UserNameInput extends StatelessWidget {
-  const UserNameInput({Key? key}) : super(key: key);
+class BelongInput extends StatelessWidget {
+  const BelongInput({Key? key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +92,7 @@ class UserNameInput extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'UserName',
+              labelText: '所属',
             ),
           ),
         ),
@@ -89,8 +102,8 @@ class UserNameInput extends StatelessWidget {
   }
 }
 
-class MailAdressInput extends StatelessWidget {
-  const MailAdressInput({Key? key}) : super(key: key); // Added 'Key?' parameter
+class ActiveSpaceInput extends StatelessWidget {
+  const ActiveSpaceInput({Key? key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +115,7 @@ class MailAdressInput extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'mail-adress',
+              labelText: '活動圏',
             ),
           ),
         ),
@@ -112,61 +125,37 @@ class MailAdressInput extends StatelessWidget {
   }
 }
 
-class PasswordInput extends StatelessWidget {
-  const PasswordInput({Key? key}) : super(key: key); 
+class MessageInput extends StatelessWidget {
+  const MessageInput({Key? key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:[
-    SizedBox(
-      width: 250,
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password',
+      children: [
+        SizedBox(
+          width: 250,
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Message',
+            ),
+          ),
         ),
-      ),
-    ),
-    SizedBox(height: 16),
+        SizedBox(height: 16),
       ],
     );
   }
-  
-}
-
-class PasswordCheckInput extends StatelessWidget {
-  const PasswordCheckInput({Key? key}) : super(key: key); // Added 'Key?' parameter
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children:[
-    SizedBox(
-      width: 250,
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password確認',
-        ),
-      ),
-    ),
-    SizedBox(height: 16),
-      ],
-    );
-  }
-  
 }
 
 
-class NextButton extends StatelessWidget {
+
+class InputFinishButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/second');
+        Navigator.pushNamed(context, '/fourth');
       },
     child: Column(
       children: [
