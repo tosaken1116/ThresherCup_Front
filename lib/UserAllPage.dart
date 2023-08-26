@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
+import 'DMPage.dart';
 
 class UserAllPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
+      routes: {
+    '/sixth': (context) => DMPage(), 
+  },
       home: Scaffold(
         appBar: AppBar(title: const Text('ClosePass'),centerTitle: false,
-        leading: Icon(Icons.help),),
+        leading: IconButton(icon:Icon(Icons.help),
+        onPressed: () { 
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DMPage(), 
+              ),
+            );
+          },),),
         body: Center(
           child: Column( 
     mainAxisAlignment: MainAxisAlignment.center,

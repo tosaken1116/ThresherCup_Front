@@ -6,6 +6,7 @@ import 'ProfileDetails.dart';
 import 'Profile.dart';
 import 'UserAllPage.dart';
 import 'HomeSetting.dart';
+import 'DMPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/third': (context) => ProfileDetails(),
         '/fourth':(context) => Profile(),
         '/fifth':(context) => UserAllPage(),
+        '/sixth': (context) => DMPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
