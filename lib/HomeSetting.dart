@@ -1,63 +1,30 @@
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'ProfileExample.dart';
-import 'HomeSetting.dart';
 
-class SignupPage extends StatelessWidget {
+class HomeSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       routes: {
-    '/homesetting': (context) => HomeSetting(), 
+    '/second': (context) => ProfileExample(), 
   },
       home: Scaffold(
-        appBar: AppBar(title: const Text('')),
+        appBar: AppBar(title: const Text(''),actions: [
+          IconButton(
+            icon: Icon(Icons.contact_support),
+            onPressed: () => {},
+          ),]),
         body: Center(
         child: Column(
           children: [
-            RichText(
-              text: TextSpan(
-                style: TextStyle(fontSize: 32),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'C',
-                    style: TextStyle(
-                      color: Color(0xFF00FFF0),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'lose',
-                    style: TextStyle(
-                      color: Color(0xff000000),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'P',
-                    style: TextStyle(
-                      color: Color(0xFFE395FF),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  TextSpan(
-                    text: 'ass',
-                    style: TextStyle(
-                      color: Color(0xff000000),
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            ClosePass(),
             SingleChoice(),
             SizedBox(height: 20),
-            UserNameInput(),
-            MailAdressInput(),
-            PasswordInput(),
-            PasswordCheckInput(),
-            NextButton(),
+            HomeInput(),
+            RangeInput(),
+            HomeSetButton(),
             Spacer(),
           ],
         )
@@ -67,8 +34,8 @@ class SignupPage extends StatelessWidget {
   }
 }
 
-class UserNameInput extends StatelessWidget {
-  const UserNameInput({Key? key}) : super(key: key);
+class HomeInput extends StatelessWidget {
+  const HomeInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +47,7 @@ class UserNameInput extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'UserName',
+              labelText: '自宅位置',
             ),
           ),
         ),
@@ -90,8 +57,8 @@ class UserNameInput extends StatelessWidget {
   }
 }
 
-class MailAdressInput extends StatelessWidget {
-  const MailAdressInput({Key? key}) : super(key: key); // Added 'Key?' parameter
+class RangeInput extends StatelessWidget {
+  const RangeInput({Key? key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +70,7 @@ class MailAdressInput extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: 'mail-adress',
+              labelText: 'すれ違いたくない範囲',
             ),
           ),
         ),
@@ -113,61 +80,15 @@ class MailAdressInput extends StatelessWidget {
   }
 }
 
-class PasswordInput extends StatelessWidget {
-  const PasswordInput({Key? key}) : super(key: key); 
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children:[
-    SizedBox(
-      width: 250,
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password',
-        ),
-      ),
-    ),
-    SizedBox(height: 16),
-      ],
-    );
-  }
-  
-}
-
-class PasswordCheckInput extends StatelessWidget {
-  const PasswordCheckInput({Key? key}) : super(key: key); // Added 'Key?' parameter
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children:[
-    SizedBox(
-      width: 250,
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password確認',
-        ),
-      ),
-    ),
-    SizedBox(height: 16),
-      ],
-    );
-  }
-  
-}
 
 
-class NextButton extends StatelessWidget {
+
+class HomeSetButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/homesetting');
+        Navigator.pushNamed(context, '/second');
       },
     child: Column(
       children: [
