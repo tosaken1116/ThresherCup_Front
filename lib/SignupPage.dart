@@ -9,12 +9,12 @@ class SignupPage extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
       routes: {
-    '/homesetting': (context) => HomeSetting(), 
-  },
+        '/homesetting': (context) => HomeSetting(),
+      },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
-        child: Column(
+            child: Column(
           children: [
             RichText(
               text: TextSpan(
@@ -51,7 +51,6 @@ class SignupPage extends StatelessWidget {
                 ],
               ),
             ),
-            SingleChoice(),
             SizedBox(height: 20),
             UserNameInput(),
             MailAdressInput(),
@@ -60,8 +59,7 @@ class SignupPage extends StatelessWidget {
             NextButton(),
             Spacer(),
           ],
-        )
-        ),
+        )),
       ),
     );
   }
@@ -114,53 +112,51 @@ class MailAdressInput extends StatelessWidget {
 }
 
 class PasswordInput extends StatelessWidget {
-  const PasswordInput({Key? key}) : super(key: key); 
+  const PasswordInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:[
-    SizedBox(
-      width: 250,
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password',
+      children: [
+        SizedBox(
+          width: 250,
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Password',
+            ),
+          ),
         ),
-      ),
-    ),
-    SizedBox(height: 16),
+        SizedBox(height: 16),
       ],
     );
   }
-  
 }
 
 class PasswordCheckInput extends StatelessWidget {
-  const PasswordCheckInput({Key? key}) : super(key: key); // Added 'Key?' parameter
+  const PasswordCheckInput({Key? key})
+      : super(key: key); // Added 'Key?' parameter
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:[
-    SizedBox(
-      width: 250,
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password確認',
+      children: [
+        SizedBox(
+          width: 250,
+          child: TextField(
+            obscureText: true,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Password確認',
+            ),
+          ),
         ),
-      ),
-    ),
-    SizedBox(height: 16),
+        SizedBox(height: 16),
       ],
     );
   }
-  
 }
-
 
 class NextButton extends StatelessWidget {
   @override
@@ -169,61 +165,62 @@ class NextButton extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, '/homesetting');
       },
-    child: Column(
-      children: [
-        Container(
-          width: 203,
-          height: 40,
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: Color(0xFF00FFEF),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+      child: Column(
+        children: [
+          Container(
+            width: 203,
+            height: 40,
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: Color(0xFF00FFEF),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              shadows: [
+                BoxShadow(
+                  color: Color(0xFFE395FF),
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                )
+              ],
             ),
-            shadows: [
-              BoxShadow(
-                color: Color(0xFFE395FF),
-                blurRadius: 4,
-                offset: Offset(0, 4),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children:<Widget>[
-                      Text(
-                        'Next',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w500,
-                          height: 1.43,
-                          letterSpacing: 0.10,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Next',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w500,
+                            height: 1.43,
+                            letterSpacing: 0.10,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
-    ),
+        ],
+      ),
     );
   }
 }

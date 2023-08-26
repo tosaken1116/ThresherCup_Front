@@ -174,18 +174,23 @@ class _PageChoiceState extends State<PageChoice> {
           pageView = newSelection.first;
         });
 
-        if (pageView == Page.mypage) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return MyAccount();
-            }),
-          );
-        } else if (pageView == Page.otheruser) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return UserAllPage();
-          }));
-        }
+        Future.delayed(
+          Duration.zero,
+          () {
+            if (pageView == Page.mypage) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return MyAccount();
+                }),
+              );
+            } else if (pageView == Page.otheruser) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return UserAllPage();
+              }));
+            }
+          },
+        );
       },
     );
   }
