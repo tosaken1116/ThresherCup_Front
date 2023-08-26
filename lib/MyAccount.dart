@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pass_by_connect/MyAccount.dart';
+import 'SettingProfile.dart';
+import 'Favorit.dart';
+import 'MyTimeLine.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
+import 'MyAccount.dart';
 import 'UserAllPage.dart';
 
 void main() => runApp(const MyAccount());
@@ -16,31 +19,45 @@ class MyAccount extends StatefulWidget {
 
 class _MyAccountState extends State<MyAccount> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 1) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return Favorit(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 2) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return MyTimeLine(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 3) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return SettingProfile(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 0) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return UserAllPage(); // Navigate to the FavoritePage
+        }),
+      );
+    }
   }
 
   @override
@@ -82,35 +99,33 @@ class _MyAccountState extends State<MyAccount> {
               activeIcon: Icon(Icons.favorite_border),
               label: 'Favorite',
               tooltip: "This is Favorite",
-              backgroundColor: Colors.green,
+              backgroundColor: Color.fromARGB(255, 141, 238, 255),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.question_answer),
               activeIcon: Icon(Icons.question_answer),
               label: 'TimeLine',
               tooltip: "This is Chat",
-              backgroundColor: Colors.purple,
+              backgroundColor: Color.fromARGB(255, 240, 157, 255),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.manage_accounts),
               activeIcon: Icon(Icons.manage_accounts),
               label: 'Settings',
               tooltip: "This is a Settings Page",
-              backgroundColor: Colors.pink,
+              backgroundColor: Color.fromARGB(255, 108, 228, 255),
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
+          selectedItemColor: Color.fromARGB(255, 3, 0, 26),
           onTap: _onItemTapped,
           type: BottomNavigationBarType.shifting,
           backgroundColor: Colors.red,
           enableFeedback: true,
-          // IconTheme系統の値が優先されます。
           iconSize: 18,
           selectedFontSize: 20,
           selectedIconTheme: const IconThemeData(
               size: 30, color: Color.fromARGB(255, 52, 52, 52)),
-
           unselectedFontSize: 15,
           unselectedIconTheme: const IconThemeData(
               size: 25, color: Color.fromARGB(255, 70, 70, 70)),
