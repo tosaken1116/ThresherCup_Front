@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Favorit.dart';
 import 'LoginPage.dart';
 import 'MyTimeLine.dart';
+import 'SettingProfile.dart';
 import 'SignupPage.dart';
 import 'ProfileExample.dart';
 import 'ProfileDetails.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/seventh': (context) => MyAccount(),
         '/eighth': (context) => MyTimeLine(),
         '/ninth': (context) => Favorit(),
+        '/tenth': (context) => SettingProfile(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -4,16 +4,16 @@ import 'LoginPage.dart';
 import 'DMPage.dart';
 import 'MyAccount.dart';
 
-void main() => runApp(const UserAllPage());
+void main() => runApp(const SettingProfile());
 
-class UserAllPage extends StatefulWidget {
-  const UserAllPage({Key? key}) : super(key: key);
+class SettingProfile extends StatefulWidget {
+  const SettingProfile({Key? key}) : super(key: key);
 
   @override
-  State<UserAllPage> createState() => _UserAllPageState();
+  State<SettingProfile> createState() => _SettingProfileState();
 }
 
-class _UserAllPageState extends State<UserAllPage> {
+class _SettingProfileState extends State<SettingProfile> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -170,7 +170,7 @@ class _PageChoiceState extends State<PageChoice> {
           );
         } else if (pageView == Page.otheruser) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return UserAllPage();
+            return SettingProfile();
           }));
         }
       },
