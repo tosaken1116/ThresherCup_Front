@@ -54,7 +54,7 @@ class _FavoritState extends State<Favorit> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return Favorit(); // Navigate to the FavoritePage
+          return UserAllPage(); // Navigate to the FavoritePage
         }),
       );
     }

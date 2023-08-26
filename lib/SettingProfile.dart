@@ -6,6 +6,7 @@ import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
 import 'MyAccount.dart';
+import 'UserAllPage.dart';
 
 void main() => runApp(const SettingProfile());
 
@@ -53,7 +54,7 @@ class _SettingProfileState extends State<SettingProfile> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return SettingProfile(); // Navigate to the FavoritePage
+          return UserAllPage(); // Navigate to the FavoritePage
         }),
       );
     }

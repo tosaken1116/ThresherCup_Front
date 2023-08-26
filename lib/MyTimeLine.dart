@@ -6,6 +6,7 @@ import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
 import 'MyAccount.dart';
+import 'UserAllPage.dart';
 
 void main() => runApp(const MyTimeLine());
 
@@ -53,7 +54,7 @@ class _MyTimeLineState extends State<MyTimeLine> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return MyTimeLine(); // Navigate to the FavoritePage
+          return UserAllPage(); // Navigate to the FavoritePage
         }),
       );
     }
