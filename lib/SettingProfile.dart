@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'SettingProfile.dart';
+import 'Favorit.dart';
+import 'MyTimeLine.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
@@ -15,31 +18,45 @@ class SettingProfile extends StatefulWidget {
 
 class _SettingProfileState extends State<SettingProfile> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 1) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return Favorit(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 2) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return MyTimeLine(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 3) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return SettingProfile(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 0) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return SettingProfile(); // Navigate to the FavoritePage
+        }),
+      );
+    }
   }
 
   @override
@@ -99,19 +116,15 @@ class _SettingProfileState extends State<SettingProfile> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
+          selectedItemColor: Color.fromARGB(255, 3, 0, 26),
           onTap: _onItemTapped,
           type: BottomNavigationBarType.shifting,
-          // ここで色を設定していても、shiftingにしているので
-          // Itemの方のbackgroundColorが勝ちます。
           backgroundColor: Colors.red,
           enableFeedback: true,
-          // IconTheme系統の値が優先されます。
           iconSize: 18,
           selectedFontSize: 20,
           selectedIconTheme: const IconThemeData(
               size: 30, color: Color.fromARGB(255, 52, 52, 52)),
-
           unselectedFontSize: 15,
           unselectedIconTheme: const IconThemeData(
               size: 25, color: Color.fromARGB(255, 70, 70, 70)),
@@ -120,8 +133,7 @@ class _SettingProfileState extends State<SettingProfile> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              PageChoice(),
-              SuggestText(),
+              EditProfileText(),
             ],
           ),
         ),
@@ -130,55 +142,7 @@ class _SettingProfileState extends State<SettingProfile> {
   }
 }
 
-enum Page { mypage, otheruser }
-
-class PageChoice extends StatefulWidget {
-  const PageChoice({Key? key}) : super(key: key);
-
-  @override
-  State<PageChoice> createState() => _PageChoiceState();
-}
-
-class _PageChoiceState extends State<PageChoice> {
-  Page pageView = Page.mypage;
-
-  @override
-  Widget build(BuildContext context) {
-    return SegmentedButton<Page>(
-      segments: const <ButtonSegment<Page>>[
-        ButtonSegment<Page>(
-          value: Page.mypage,
-          label: Text('マイアカウント'),
-        ),
-        ButtonSegment<Page>(
-          value: Page.otheruser,
-          label: Text('他のユーザー'),
-        ),
-      ],
-      selected: <Page>{pageView},
-      onSelectionChanged: (Set<Page> newSelection) {
-        setState(() {
-          pageView = newSelection.first;
-        });
-
-        if (pageView == Page.mypage) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return MyAccount();
-            }),
-          );
-        } else if (pageView == Page.otheruser) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SettingProfile();
-          }));
-        }
-      },
-    );
-  }
-}
-
-class SuggestText extends StatelessWidget {
+class EditProfileText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -187,10 +151,10 @@ class SuggestText extends StatelessWidget {
           width: 220,
           height: 40,
           child: Text(
-            '２４時間以内にすれ違ったユーザー',
+            'プロフィールを編集します',
             style: TextStyle(
               color: Colors.black,
-              fontSize: 14,
+              fontSize: 18,
               fontFamily: 'Roboto',
               fontWeight: FontWeight.w400,
               height: 2,

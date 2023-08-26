@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'SettingProfile.dart';
+import 'Favorit.dart';
+import 'MyTimeLine.dart';
 import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
@@ -15,31 +18,45 @@ class UserAllPage extends StatefulWidget {
 
 class _UserAllPageState extends State<UserAllPage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
+    if (index == 1) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return Favorit(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 2) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return MyTimeLine(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 3) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return SettingProfile(); // Navigate to the FavoritePage
+        }),
+      );
+    } else if (index == 0) {
+      // Index 1 corresponds to "Favorite"
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return UserAllPage(); // Navigate to the FavoritePage
+        }),
+      );
+    }
   }
 
   @override
@@ -102,16 +119,12 @@ class _UserAllPageState extends State<UserAllPage> {
           selectedItemColor: Color.fromARGB(255, 3, 0, 26),
           onTap: _onItemTapped,
           type: BottomNavigationBarType.shifting,
-          // ここで色を設定していても、shiftingにしているので
-          // Itemの方のbackgroundColorが勝ちます。
           backgroundColor: Colors.red,
           enableFeedback: true,
-          // IconTheme系統の値が優先されます。
           iconSize: 18,
           selectedFontSize: 20,
           selectedIconTheme: const IconThemeData(
               size: 30, color: Color.fromARGB(255, 52, 52, 52)),
-
           unselectedFontSize: 15,
           unselectedIconTheme: const IconThemeData(
               size: 25, color: Color.fromARGB(255, 70, 70, 70)),
