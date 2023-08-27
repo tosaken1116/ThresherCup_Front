@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'ReHomeSetting.dart';
+import 'package:pass_by_connect/profile.dart';
 import 'SettingProfile.dart';
 import 'Favorit.dart';
 import 'MyTimeLine.dart';
@@ -66,6 +68,7 @@ class _SettingProfileState extends State<SettingProfile> {
       theme: ThemeData(useMaterial3: true),
       routes: {
         '/sixth': (context) => DMPage(),
+        '/eleventh': (context) => ReHomeSetting(),
       },
       home: Scaffold(
         appBar: AppBar(
@@ -135,6 +138,10 @@ class _SettingProfileState extends State<SettingProfile> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               EditProfileText(),
+              SizedBox(height: 10),
+              ProfileCard(),
+              SizedBox(height: 10),
+              EditButton(),
             ],
           ),
         ),
@@ -167,43 +174,66 @@ class EditProfileText extends StatelessWidget {
   }
 }
 
-class ScrollUsers extends StatefulWidget {
-  const ScrollUsers({Key? key}) : super(key: key);
-
-  @override
-  State<ScrollUsers> createState() => _ScrollUsersState();
-}
-
-class _ScrollUsersState extends State<ScrollUsers> {
+class EditButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/eleventh');
+      },
+      child: Column(
         children: [
-          CircleAvatar(
-            backgroundImage:
-                NetworkImage('https://cat-fact.herokuapp.com/facts'),
-          ),
-          SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text('Sea10'),
-                  SizedBox(width: 8),
-                  Text('2022/05/05'),
-                ],
+          Container(
+            width: 203,
+            height: 40,
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: Color(0xFF00FFEF),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              SizedBox(height: 4),
-              Text('aaaaa'),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.favorite_border),
-              ),
-            ],
+              shadows: [
+                BoxShadow(
+                  color: Color(0xFFE395FF),
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                )
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 10),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          '自宅位置を変更します。',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w500,
+                            height: 1.43,
+                            letterSpacing: 0.10,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

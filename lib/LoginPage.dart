@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'AllTimeLine.dart';
 import 'package:sign_button/sign_button.dart';
+
+import 'HomeSetting.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(useMaterial3: true),
+      routes: {
+        '/eleventh': (context) => AllTimeLine(),
+      },
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: Center(
@@ -54,6 +60,7 @@ class LoginPage extends StatelessWidget {
                 buttonType: ButtonType.google,
                 onPressed: () {
                   print('click');
+                  Navigator.pushNamed(context, '/AllTimeLine');
                 },
               ),
               SizedBox(height: 10),

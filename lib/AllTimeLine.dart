@@ -6,17 +6,18 @@ import 'SignupPage.dart';
 import 'LoginPage.dart';
 import 'DMPage.dart';
 import 'MyAccount.dart';
+import 'UserAllPage.dart';
 
-void main() => runApp(const UserAllPage());
+void main() => runApp(const AllTimeLine());
 
-class UserAllPage extends StatefulWidget {
-  const UserAllPage({Key? key}) : super(key: key);
+class AllTimeLine extends StatefulWidget {
+  const AllTimeLine({Key? key}) : super(key: key);
 
   @override
-  State<UserAllPage> createState() => _UserAllPageState();
+  State<AllTimeLine> createState() => _AllTimeLineState();
 }
 
-class _UserAllPageState extends State<UserAllPage> {
+class _AllTimeLineState extends State<AllTimeLine> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -25,31 +26,35 @@ class _UserAllPageState extends State<UserAllPage> {
     });
 
     if (index == 1) {
+      // Index 1 corresponds to "Favorite"
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return Favorit();
+          return Favorit(); // Navigate to the FavoritePage
         }),
       );
     } else if (index == 2) {
+      // Index 1 corresponds to "Favorite"
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return MyTimeLine();
+          return AllTimeLine(); // Navigate to the FavoritePage
         }),
       );
     } else if (index == 3) {
+      // Index 1 corresponds to "Favorite"
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return SettingProfile();
+          return SettingProfile(); // Navigate to the FavoritePage
         }),
       );
     } else if (index == 0) {
+      // Index 1 corresponds to "Favorite"
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return UserAllPage();
+          return UserAllPage(); // Navigate to the FavoritePage
         }),
       );
     }
@@ -99,7 +104,7 @@ class _UserAllPageState extends State<UserAllPage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.question_answer),
               activeIcon: Icon(Icons.question_answer),
-              label: 'TimeLine',
+              label: 'AllTimeLine',
               tooltip: "This is Chat",
               backgroundColor: Color.fromARGB(255, 240, 157, 255),
             ),
@@ -129,8 +134,8 @@ class _UserAllPageState extends State<UserAllPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              PageChoice(),
-              SuggestText(),
+              TimeLineChoice(),
+              PostListText(),
             ],
           ),
         ),
@@ -139,60 +144,55 @@ class _UserAllPageState extends State<UserAllPage> {
   }
 }
 
-enum Page { mypage, otheruser }
+enum TimeLine { mypost, otherpost }
 
-class PageChoice extends StatefulWidget {
-  const PageChoice({Key? key}) : super(key: key);
+class TimeLineChoice extends StatefulWidget {
+  const TimeLineChoice({Key? key}) : super(key: key);
 
   @override
-  State<PageChoice> createState() => _PageChoiceState();
+  _TimeLineChoiceState createState() => _TimeLineChoiceState();
 }
 
-class _PageChoiceState extends State<PageChoice> {
-  Page pageView = Page.mypage;
+class _TimeLineChoiceState extends State<TimeLineChoice> {
+  TimeLine timelineView = TimeLine.mypost;
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton<Page>(
-      segments: const <ButtonSegment<Page>>[
-        ButtonSegment<Page>(
-          value: Page.mypage,
-          label: Text('マイアカウント'),
+    return SegmentedButton<TimeLine>(
+      segments: const <ButtonSegment<TimeLine>>[
+        ButtonSegment<TimeLine>(
+          value: TimeLine.mypost,
+          label: Text('自分の投稿'),
         ),
-        ButtonSegment<Page>(
-          value: Page.otheruser,
-          label: Text('他のユーザー'),
+        ButtonSegment<TimeLine>(
+          value: TimeLine.otherpost,
+          label: Text('タイムライン'),
         ),
       ],
-      selected: <Page>{pageView},
-      onSelectionChanged: (Set<Page> newSelection) {
+      selected: <TimeLine>{timelineView},
+      onSelectionChanged: (Set<TimeLine> newSelection) {
         setState(() {
-          pageView = newSelection.first;
+          timelineView = newSelection.first;
         });
 
-        Future.delayed(
-          Duration.zero,
-          () {
-            if (pageView == Page.mypage) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return MyAccount();
-                }),
-              );
-            } else if (pageView == Page.otheruser) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return UserAllPage();
-              }));
-            }
-          },
-        );
+        if (timelineView == TimeLine.mypost) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) {
+              return MyAccount();
+            }),
+          );
+        } else if (timelineView == TimeLine.otherpost) {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return AllTimeLine();
+          }));
+        }
       },
     );
   }
 }
 
-class SuggestText extends StatelessWidget {
+class PostListText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -201,7 +201,7 @@ class SuggestText extends StatelessWidget {
           width: 220,
           height: 40,
           child: Text(
-            '２４時間以内にすれ違ったユーザー',
+            'すべてのタイムライン一覧です',
             style: TextStyle(
               color: Colors.black,
               fontSize: 14,
@@ -212,50 +212,6 @@ class SuggestText extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class ScrollUsers extends StatefulWidget {
-  const ScrollUsers({Key? key}) : super(key: key);
-
-  @override
-  State<ScrollUsers> createState() => _ScrollUsersState();
-}
-
-class _ScrollUsersState extends State<ScrollUsers> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            backgroundImage:
-                NetworkImage('https://cat-fact.herokuapp.com/facts'),
-          ),
-          SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text('Sea10'),
-                  SizedBox(width: 8),
-                  Text('2022/05/05'),
-                ],
-              ),
-              SizedBox(height: 4),
-              Text('aaaaa'),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.favorite_border),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }
