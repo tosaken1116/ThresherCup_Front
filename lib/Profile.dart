@@ -74,7 +74,7 @@ class SuggestText extends StatelessWidget {
           width: 220,
           height: 40,
           child: Text(
-            'プロフィールカードを作成します',
+            'このプロフィールで開始します',
             style: TextStyle(
               color: Colors.black,
               fontSize: 14,

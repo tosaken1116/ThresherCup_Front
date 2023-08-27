@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'AllTimeLine.dart';
 import 'Favorit.dart';
 import 'LoginPage.dart';
 import 'MyTimeLine.dart';
@@ -11,6 +12,7 @@ import 'UserAllPage.dart';
 import 'HomeSetting.dart';
 import 'DMPage.dart';
 import 'MyAccount.dart';
+import 'ReHomeSetting.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,6 +37,8 @@ class MyApp extends StatelessWidget {
         '/eighth': (context) => MyTimeLine(),
         '/ninth': (context) => Favorit(),
         '/tenth': (context) => SettingProfile(),
+        '/eleventh': (context) => AllTimeLine(),
+        '/twelveth': (context) => ReHomeSetting(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
