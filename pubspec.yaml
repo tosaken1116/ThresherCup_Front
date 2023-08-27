@@ -33,6 +33,7 @@ dependencies:
   flutter_riverpod: ^1.0.0
   cupertino_icons: ^1.0.2
   image_picker: ^0.8.0
+  sign_button: ^2.0.4
 
 
 dev_dependencies:
