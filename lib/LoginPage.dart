@@ -56,6 +56,13 @@ class LoginPage extends StatelessWidget {
                   print('click');
                 },
               ),
+              SizedBox(height: 10),
+              SignInButton(
+                buttonType: ButtonType.apple,
+                onPressed: () {
+                  print('click');
+                },
+              ),
               Spacer(),
             ],
           ),
